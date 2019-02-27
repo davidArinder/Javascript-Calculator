@@ -8,7 +8,6 @@ const calculate = (n1, operator, n2) => {
     if (operator === "divide") return firstNum / secondNum
   }
     
-// Function to ascertain what type of key was used.
 const getKeyType = key => {
     const { action } = key.dataset
     if (!action) return "number"
@@ -41,8 +40,8 @@ const createResultString = (key, displayedNum, state) => {
    }
   
    if (keyType === "decimal") {
-     if (!displayedNum.includes(".")) return displayedNum + "." //adds a decimal to the number
-     if (previousKeyType === "operator" || previousKeyType === "calculate") return "0." //If you click decimal after an operator or the equals sign, resets to 0 plus a decimal. 
+     if (!displayedNum.includes(".")) return displayedNum + "." 
+     if (previousKeyType === "operator" || previousKeyType === "calculate") return "0." 
      return displayedNum
    } 
   
@@ -51,8 +50,8 @@ const createResultString = (key, displayedNum, state) => {
        operator &&
        previousKeyType !== "operator" &&
        previousKeyType !== "calculate"
-       ? calculate(firstValue, operator, displayedNum) //If you have a first value, operator, and a second value in that order, run calculation.
-       : displayedNum //If not, return the displayedNum.
+       ? calculate(firstValue, operator, displayedNum)
+       : displayedNum
    }
   
   if (keyType === "clear") return 0 //AC button clears the calculator
@@ -104,9 +103,9 @@ const updateCalculatorState = (key, calculator, calculatedValue, displayedNum) =
   
   const updateVisualState = (key, calculator) => {
     const keyType = getKeyType(key);
-    Array.from(key.parentNode.children).forEach(k => k.classList.remove("is-depressed")) //Remove depressed state.
+    Array.from(key.parentNode.children).forEach(k => k.classList.remove("is-depressed"))
     
-    if(keyType === "operator") key.classList.add("is-depressed") //Add depressed state.
+    if(keyType === "operator") key.classList.add("is-depressed")
     if(keyType === "clear" && key.textContent !== "AC") key.textContent = "AC"
     if (keyType !== "clear") {
       const clearButton = calculator.querySelector("[data-action=clear]")
@@ -129,5 +128,3 @@ keys.addEventListener("click", e => {
     updateCalculatorState (key, calculator, resultString, displayedNum)
     updateVisualState(key, calculator)
   })
-
-//https://medium.freecodecamp.org/how-to-build-an-html-calculator-app-from-scratch-using-javascript-4454b8714b98
