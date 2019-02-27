@@ -74,15 +74,9 @@ button:hover {
   background-color: #4e9ed4;
 }
 
-/*.calculator_keys {
-  display: grid;
-}*/
-
 .calculator_keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   padding: 20px;
 }
-
-/*https://freshman.tech/css-grid-calculator/*/
